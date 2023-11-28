@@ -13,7 +13,7 @@ public class Logout extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.getSession().invalidate();
-		resp.getWriter().print("<h1>Logout successful<h1>");
+		resp.getWriter().print("<h1>Logout success<h1>");
 		req.getRequestDispatcher("Login.html").include(req, resp);;
 	}
 }
