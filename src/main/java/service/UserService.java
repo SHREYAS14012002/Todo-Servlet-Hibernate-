@@ -1,6 +1,7 @@
 package service;
 
 import dao.Userdao;
+import dto.Task;
 import dto.Userdto;
 import helper.AES;
 
@@ -35,5 +36,15 @@ public class UserService {
 			}
 		}
 
+	}
+
+	public void saveTask(Task task) {
+		Userdao userdao = new Userdao();
+		userdao.saveTask(task);
+	}
+
+	public void updateUser(Userdto dto) {
+		Userdao dao = new Userdao();
+		dao.updateUser(dto);
 	}
 }

@@ -47,6 +47,54 @@
         tr:nth-child(even) {
             background-color: #f9f9f9;
         }
+        
+        #delete{
+        	background-color: #FD1C03;
+            color: #fff;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-right: 5px;
+            transition: background-color 0.3s ease-in-out;
+        }
+        
+        #delete:hover{
+        	 background-color: #990000;
+        }
+        
+        #edit{
+        	background-color: #B1FB17;
+            color: #fff;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-right: 5px;
+            transition: background-color 0.3s ease-in-out;
+        }
+        
+        #edit:hover{
+        	 background-color: #DAEE01;
+        }
+        
+        #addTask{
+        	background-color: #3EA055;
+            color: #fff;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-right: 5px;
+            transition: background-color 0.3s ease-in-out;
+        }
+        
+        #addTask:hover{
+        	 background-color: #3A5F0B;
+        }
 
         button {
             background-color: #3498db;
@@ -100,11 +148,11 @@
             <td>Water</td>
             <td>12/12/2023</td>
             <td>Completed</td>
-            <td><button>Delete</button></td>
-            <td><button>Edit</button></td>
+            <td><button id="delete">Delete</button></td>
+            <td><button id="edit">Edit</button></td>
         </tr>
     </table>
-    <a href="session-add-task"><button >Add File</button></a><br>
+    <a href="session-add-task"><button id="addTask">Add File</button></a><br>
     <a href="logout"><button >Logout</button></a>
 </body>
 </html>

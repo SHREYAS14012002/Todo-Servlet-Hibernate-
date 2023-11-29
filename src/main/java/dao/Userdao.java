@@ -7,6 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import dto.Task;
 import dto.Userdto;
 
 public class Userdao {
@@ -30,5 +31,16 @@ public class Userdao {
 			return null;
 		}
 	}
-
+	
+	public void saveTask(Task task) {
+		entityManager.getTransaction().begin();
+		entityManager.persist(task);
+		entityManager.getTransaction().commit();
+	}
+	
+	public void updateUser(Userdto dto) {
+		entityManager.getTransaction().begin();
+		entityManager.merge(dto);
+		entityManager.getTransaction().commit();
+	}
 }

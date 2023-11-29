@@ -17,10 +17,12 @@ public class CheckAddTaskSession extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		Userdto dto = (Userdto) session.getAttribute("user");
-		if (dto==null) {
+		if (dto == null) {
+
 			resp.getWriter().print("<h1>Session expired, Login again</h1>");
 			req.getRequestDispatcher("Login.html").include(req, resp);
 		} else {
+
 			req.getRequestDispatcher("AddTask.html").forward(req, resp);
 		}
 	}
