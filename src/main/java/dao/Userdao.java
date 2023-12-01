@@ -43,4 +43,25 @@ public class Userdao {
 		entityManager.merge(dto);
 		entityManager.getTransaction().commit();
 	}
+	
+	public Task findTaskByID( int id) {
+		return entityManager.find(Task.class, id);
+	}
+	
+	public void updateTask(Task task) {
+		entityManager.getTransaction().begin();
+		entityManager.merge(task);
+		entityManager.getTransaction().commit();
+	}
+
+	public Userdto findByID(int id) {
+		return entityManager.find(Userdto.class, id);
+	}
+
+	public void deleteTask(Task task , int id) {
+		entityManager.getTransaction().begin();
+		entityManager.remove(task);
+		
+		entityManager.getTransaction().commit();
+	}
 }

@@ -54,6 +54,7 @@ public class AddTask extends HttpServlet {
 			
 			
 			resp.getWriter().print("<h1 style='color:green'>Task Added Successfully</h1>");
+			req.setAttribute("list", dto.getTasks());
 			req.getRequestDispatcher("Home.jsp").include(req, resp);
 		}
 		

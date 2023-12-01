@@ -26,12 +26,12 @@ public class UserService {
 	public boolean login(String email, String password) {
 		Userdao userdao = new Userdao();
 		Userdto userdto = userdao.findBYEmail(email);
-		if(userdto==null) {
+		if (userdto == null) {
 			return false;
-		}else {
-			if(password.equals(AES.decrypt(userdto.getPassword(), "123"))) {
+		} else {
+			if (password.equals(AES.decrypt(userdto.getPassword(), "123"))) {
 				return true;
-			}else {
+			} else {
 				return false;
 			}
 		}
@@ -47,4 +47,25 @@ public class UserService {
 		Userdao dao = new Userdao();
 		dao.updateUser(dto);
 	}
+
+	public void changeStatus(int id) {
+		Userdao dao = new Userdao();
+		Task task = dao.findTaskByID(id);
+		task.setStatus(true);
+		dao.updateTask(task);
+
+	}
+
+	public void deleteTask(int id, Userdto dto) {
+		Userdao dao = new Userdao();
+		Task task = dao.findTaskByID(id);
+		if (task != null) {
+			// removing mapped data
+			dto.getTasks().remove(task);
+			dao.updateUser(dto);
+			// remove task
+			dao.deleteTask(task, id);
+		}
+	}
+
 }

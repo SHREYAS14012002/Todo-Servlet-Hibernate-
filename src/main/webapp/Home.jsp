@@ -1,3 +1,7 @@
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.time.LocalDateTime"%>
+<%@page import="java.util.List"%>
+<%@page import="dto.Task"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -133,6 +137,7 @@
     </style>
 </head>
 <body>
+
     <h1>ToDo Home</h1>
     <table border="1px">
         <tr>
@@ -143,14 +148,27 @@
             <th>Delete</th>
             <th>Edit</th>
         </tr>
-        <tr>
-            <td>Swimming</td>
-            <td>Water</td>
-            <td>12/12/2023</td>
-            <td>Completed</td>
-            <td><button id="delete">Delete</button></td>
-            <td><button id="edit">Edit</button></td>
-        </tr>
+        <%
+		List<Task> list=(List<Task>)request.getAttribute("list"); 
+		%>		
+        <%
+			if(list!=null)
+			{
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy   HH:mm:ss"); 
+				for(Task task:list){ %>
+			<tr>
+				<td><%=task.getName()%></td>
+				<td><%=task.getDecription()%></td>
+				<td><%=task.getCreatedTime().format(formatter)%></td>
+						
+				<td><% if(!task.isStatus()){%>
+				<a href="change-status?id=<%=task.getId()%>"><button type="button"><%="Complete"%></button></a>
+				<%}else{ %> Completed <%} %></td>
+				
+				<td><a href="delete-task?id=<%=task.getId()%>"><button>Delete</button></a></td>
+				<td><button>Edit</button></td>
+			</tr>
+			<%} }%>
     </table>
     <a href="session-add-task"><button id="addTask">Add File</button></a><br>
     <a href="logout"><button >Logout</button></a>
