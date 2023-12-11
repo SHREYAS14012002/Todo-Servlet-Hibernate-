@@ -1,7 +1,8 @@
-FROM tomcat:9.0-jre11
-# Remove default Tomcat apps
-RUN rm -rf /usr/local/tomcat/webapps/*
-# Copy your WAR file to Tomcat's webapps directory
-COPY target/todo.war /usr/local/tomcat/webapps/ROOT.war
-EXPOSE 8888
-CMD ["catalina.sh", "run"]
+# Use Nginx as the base image
+FROM nginx:latest
+
+# Copy the built artifacts from the Maven project into the Nginx web server directory
+COPY /path/to/your/maven/project/target/*.war /usr/share/nginx/html/
+
+# Expose port 80 (default Nginx port)
+EXPOSE 80
